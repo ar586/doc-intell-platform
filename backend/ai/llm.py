@@ -1,7 +1,7 @@
 import os
 from google import genai
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyDwqdPFku-SVynddgGzWxe5EziZkV3nPmY")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 def get_client():
     if not GEMINI_API_KEY:

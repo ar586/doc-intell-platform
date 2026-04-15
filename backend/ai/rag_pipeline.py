@@ -7,20 +7,23 @@ from google import genai
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QDRANT_PATH = os.path.join(BASE_DIR, "qdrant_storage")
 
-qdrant = QdrantClient(path=QDRANT_PATH)
+_qdrant_client = None
 COLLECTION_NAME = "books_collection"
-
-# gemini-embedding-001 produces 3072-dimensional vectors
 EMBEDDING_DIM = 3072
 
-if not qdrant.collection_exists(collection_name=COLLECTION_NAME):
-    qdrant.create_collection(
-        collection_name=COLLECTION_NAME,
-        vectors_config=VectorParams(size=EMBEDDING_DIM, distance=Distance.COSINE),
-    )
+def get_qdrant_client():
+    global _qdrant_client
+    if _qdrant_client is None:
+        _qdrant_client = QdrantClient(path=QDRANT_PATH)
+        if not _qdrant_client.collection_exists(collection_name=COLLECTION_NAME):
+            _qdrant_client.create_collection(
+                collection_name=COLLECTION_NAME,
+                vectors_config=VectorParams(size=EMBEDDING_DIM, distance=Distance.COSINE),
+            )
+    return _qdrant_client
 
 def get_embedding(text):
-    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyDwqdPFku-SVynddgGzWxe5EziZkV3nPmY")
+    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
     if not GEMINI_API_KEY:
         return [random.random() for _ in range(EMBEDDING_DIM)]
 
@@ -39,7 +42,8 @@ def add_book_to_index(book_id, title, author, description):
     text_to_embed = f"Title: {title}\nAuthor: {author}\nDescription: {description}"
     vector = get_embedding(text_to_embed)
 
-    qdrant.upsert(
+    client = get_qdrant_client()
+    client.upsert(
         collection_name=COLLECTION_NAME,
         points=[
             PointStruct(
@@ -57,7 +61,8 @@ def add_book_to_index(book_id, title, author, description):
 
 def search_books(query, top_k=3):
     query_vector = get_embedding(query)
-    search_result = qdrant.query_points(
+    client = get_qdrant_client()
+    search_result = client.query_points(
         collection_name=COLLECTION_NAME,
         query=query_vector,
         limit=top_k
