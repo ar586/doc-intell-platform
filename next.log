@@ -1,0 +1,31 @@
+
+> frontend@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.29.214:3000
+✓ Ready in 491ms
+
+ GET / 200 in 325ms (next.js: 186ms, application-code: 139ms)
+ GET / 200 in 131ms (next.js: 54ms, application-code: 76ms)
+ GET /book/4 200 in 546ms (next.js: 519ms, application-code: 27ms)
+ GET /qa 200 in 72ms (next.js: 30ms, application-code: 42ms)
+ GET /qa 200 in 59ms (next.js: 14ms, application-code: 45ms)
+ GET /qa 200 in 229ms (next.js: 26ms, application-code: 203ms)
+ GET /qa 200 in 220ms (next.js: 75ms, application-code: 145ms)
+ GET /qa 200 in 121ms (next.js: 7ms, application-code: 114ms)
+ GET /qa 200 in 91ms (next.js: 10ms, application-code: 82ms)
+ GET /qa 200 in 66ms (next.js: 3ms, application-code: 64ms)
+ GET /qa 200 in 52ms (next.js: 3ms, application-code: 49ms)
+✓ Compiled in 88ms
+✓ Compiled in 67ms
+✓ Compiled in 260ms
+ GET / 200 in 162ms (next.js: 90ms, application-code: 72ms)
+ GET / 200 in 137ms (next.js: 41ms, application-code: 96ms)
+ GET /apple-touch-icon-precomposed.png 404 in 1756ms (next.js: 1512ms, application-code: 245ms)
+ GET /apple-touch-icon-precomposed.png 404 in 1552ms (next.js: 1438ms, application-code: 114ms)
+ GET /apple-touch-icon.png 404 in 1754ms (next.js: 1659ms, application-code: 95ms)
+ GET /apple-touch-icon.png 404 in 41ms (next.js: 5ms, application-code: 36ms)
+ GET /qa 200 in 63ms (next.js: 19ms, application-code: 44ms)
+bash: line 1: 95122 Hangup: 1               npm run dev

@@ -1,0 +1,428 @@
+Watching for file changes with StatReloader
+/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py:4: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+[14/Apr/2026 16:12:11] "GET /api/books/ HTTP/1.1" 200 8457
+[14/Apr/2026 16:14:07] "GET /api/books/ HTTP/1.1" 200 8457
+[14/Apr/2026 16:14:18] "GET /api/books/4/ HTTP/1.1" 200 1963
+[14/Apr/2026 16:14:18] "GET /api/books/4/ HTTP/1.1" 200 1963
+Internal Server Error: /api/books/4/recommend/
+Traceback (most recent call last):
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 55, in error_remapped_callable
+    return callable_(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 276, in __call__
+    response, ignored_call = self._with_call(
+                             ^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 331, in _with_call
+    return call.result(), call
+           ^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 438, in result
+    raise self
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 314, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 1173, in with_call
+    return _end_unary_response_blocking(state, call, True, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 990, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.NOT_FOUND
+	details = "models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods."
+	debug_error_string = "UNKNOWN:Error received from peer ipv6:%5B2001:4860:4802:32::223%5D:443 {grpc_message:"models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.", grpc_status:5}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/api/views.py", line 21, in recommend_books
+    results = search_books(query, top_k=4)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py", line 50, in search_books
+    query_vector = get_embedding(query)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py", line 22, in get_embedding
+    result = genai.embed_content(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/generativeai/embedding.py", line 213, in embed_content
+    embedding_response = client.embed_content(
+                         ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 1263, in embed_content
+    response = rpc(
+               ^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/gapic_v1/method.py", line 128, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 57, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+[14/Apr/2026 16:14:19] "GET /api/books/4/recommend/ HTTP/1.1" 500 224003
+Internal Server Error: /api/books/4/recommend/
+Traceback (most recent call last):
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 55, in error_remapped_callable
+    return callable_(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 276, in __call__
+    response, ignored_call = self._with_call(
+                             ^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 331, in _with_call
+    return call.result(), call
+           ^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 438, in result
+    raise self
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 314, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 1173, in with_call
+    return _end_unary_response_blocking(state, call, True, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 990, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.NOT_FOUND
+	details = "models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods."
+	debug_error_string = "UNKNOWN:Error received from peer ipv6:%5B2001:4860:4802:34::223%5D:443 {grpc_status:5, grpc_message:"models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods."}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/api/views.py", line 21, in recommend_books
+    results = search_books(query, top_k=4)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py", line 50, in search_books
+    query_vector = get_embedding(query)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py", line 22, in get_embedding
+    result = genai.embed_content(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/generativeai/embedding.py", line 213, in embed_content
+    embedding_response = client.embed_content(
+                         ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 1263, in embed_content
+    response = rpc(
+               ^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/gapic_v1/method.py", line 128, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 57, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+[14/Apr/2026 16:14:19] "GET /api/books/4/recommend/ HTTP/1.1" 500 223997
+Internal Server Error: /api/ask/
+Traceback (most recent call last):
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 55, in error_remapped_callable
+    return callable_(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 276, in __call__
+    response, ignored_call = self._with_call(
+                             ^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 331, in _with_call
+    return call.result(), call
+           ^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 438, in result
+    raise self
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 314, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 1173, in with_call
+    return _end_unary_response_blocking(state, call, True, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 990, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.NOT_FOUND
+	details = "models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods."
+	debug_error_string = "UNKNOWN:Error received from peer ipv6:%5B2001:4860:4802:32::223%5D:443 {grpc_message:"models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.", grpc_status:5}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/api/views.py", line 42, in ask_question
+    results = search_books(question, top_k=3)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py", line 50, in search_books
+    query_vector = get_embedding(query)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py", line 22, in get_embedding
+    result = genai.embed_content(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/generativeai/embedding.py", line 213, in embed_content
+    embedding_response = client.embed_content(
+                         ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 1263, in embed_content
+    response = rpc(
+               ^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/gapic_v1/method.py", line 128, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 57, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+[14/Apr/2026 16:14:31] "POST /api/ask/ HTTP/1.1" 500 192502
+[14/Apr/2026 16:14:37] "GET /api/books/ HTTP/1.1" 200 20649
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+[14/Apr/2026 16:14:38] "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+Not Found: /favicon.ico
+[14/Apr/2026 16:14:38] "GET /favicon.ico HTTP/1.1" 404 2353
+[14/Apr/2026 16:14:48] "GET /api/books/health HTTP/1.1" 301 0
+Not Found: /api/books/health/
+[14/Apr/2026 16:14:48] "GET /api/books/health/ HTTP/1.1" 404 11243
+Not Found: /api/books/health/
+[14/Apr/2026 16:14:58] "GET /api/books/health/ HTTP/1.1" 404 11243
+Not Found: /api/health
+[14/Apr/2026 16:15:08] "GET /api/health HTTP/1.1" 404 5194
+/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 14, 2026 - 16:11:54
+Django version 6.0.4, using settings 'core.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py:4: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+[14/Apr/2026 16:22:02] "GET /api/books/ HTTP/1.1" 200 8457
+[14/Apr/2026 16:22:14] "GET /api/books/ HTTP/1.1" 200 8457
+[14/Apr/2026 16:22:32] "OPTIONS /api/ask/ HTTP/1.1" 200 0
+Internal Server Error: /api/ask/
+Traceback (most recent call last):
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 55, in error_remapped_callable
+    return callable_(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 276, in __call__
+    response, ignored_call = self._with_call(
+                             ^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 331, in _with_call
+    return call.result(), call
+           ^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 438, in result
+    raise self
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 314, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 1173, in with_call
+    return _end_unary_response_blocking(state, call, True, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/grpc/_channel.py", line 990, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.NOT_FOUND
+	details = "models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods."
+	debug_error_string = "UNKNOWN:Error received from peer ipv6:%5B2001:4860:4802:36::223%5D:443 {grpc_status:5, grpc_message:"models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods."}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/api/views.py", line 42, in ask_question
+    results = search_books(question, top_k=3)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py", line 50, in search_books
+    query_vector = get_embedding(query)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/ai/rag_pipeline.py", line 22, in get_embedding
+    result = genai.embed_content(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/generativeai/embedding.py", line 213, in embed_content
+    embedding_response = client.embed_content(
+                         ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 1263, in embed_content
+    response = rpc(
+               ^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/gapic_v1/method.py", line 128, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/Desktop/document intelligence platform/backend/venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 57, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+[14/Apr/2026 16:22:33] "POST /api/ask/ HTTP/1.1" 500 191822
