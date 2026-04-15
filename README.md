@@ -2,6 +2,13 @@
 
 A full-stack web application that processes book data and enables intelligent querying using Retrieval-Augmented Generation (RAG).
 
+## Screenshots
+<div align="center">
+  <img src="dashboard.png" alt="Platform Dashboard" width="800"/>
+  <br/>
+  <img src="qa.png" alt="Q&A Interface" width="800"/>
+</div>
+
 ## Features
 - **Automated Book Collection**: Selenium-based web scraper that fetches books from the web.
 - **AI Insights & RAG**: Context-aware Q&A and AI-generated insights (Summary, Genre) powered by Gemini API.
